@@ -12,3 +12,4 @@ E:\DEVELOP\C#\11-2024\AdventOfCode2024\01-12\obj\Debug\net9.0\refint\01-12.dll
 E:\DEVELOP\C#\11-2024\AdventOfCode2024\01-12\obj\Debug\net9.0\01-12.pdb
 E:\DEVELOP\C#\11-2024\AdventOfCode2024\01-12\obj\Debug\net9.0\01-12.genruntimeconfig.cache
 E:\DEVELOP\C#\11-2024\AdventOfCode2024\01-12\obj\Debug\net9.0\ref\01-12.dll
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\01-12\obj\Debug\net9.0\01-12.sourcelink.json
