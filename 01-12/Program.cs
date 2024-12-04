@@ -24,7 +24,13 @@ internal class Program
         //# curl -H "Cookie: session=..." https://adventofcode.com/2024/day/1/input > input-day1.txt
 
         //# read the file input-day1.txt
-        string[]? lines = File.ReadAllLines("input-day1.txt");
+        string filePath = "input-day1.txt";
+        if (!File.Exists(filePath))
+        {
+            Console.WriteLine("The file not found!");
+            return;
+        }
+        string[]? lines = File.ReadAllLines(filePath);
         int count = lines.Length;
         // int count = 10; //for short testing
 
