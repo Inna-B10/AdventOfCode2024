@@ -30,8 +30,8 @@ class Program
 
         //# Create an array of arrays (reports)
         int[][]? reports = new int[count][];
-        //# Create a list of lists (for only safe reports)
-        List<List<int>> safeList = new List<List<int>>();
+        // Create a list of lists (for only safe reports)
+        // List<List<int>> safeList = new List<List<int>>();
         int safeCount = 0;
         bool isError = false;
 
@@ -56,47 +56,40 @@ class Program
 
                 if (j > 0) //no manipulation with the first level(number) in the report
                 {
-                    //# Checking for monotonicity
-                    if (level > reports[i][j - 1])
-                    {
-                        if (isDesc == true)
-                        {
-                            isSafe = false;
-                            break;
-                        }
-                        //# Checking the difference
-                        if ((Math.Abs(level - reports[i][j - 1]) >= 1 && Math.Abs(level - reports[i][j - 1]) <= 3))
-                        {
-                            isAsc = true;
-                        }
-                        else
-                        {
-                            isSafe = false;
-                            break;
-                        }
-
-                    }
-                    if (level < reports[i][j - 1])
-                    {
-                        if (isAsc == true)
-                        {
-                            isSafe = false;
-                            break;
-                        }
-                        if (Math.Abs(level - reports[i][j - 1]) >= 1 && Math.Abs(level - reports[i][j - 1]) <= 3)
-                        {
-                            isDesc = true;
-                        }
-                        else
-                        {
-                            isSafe = false;
-                            break;
-                        }
-                    }
-                    if (level == reports[i][j - 1])
+                    //# Checking the difference
+                    if ((Math.Abs(level - reports[i][j - 1]) < 1 || Math.Abs(level - reports[i][j - 1]) > 3))
                     {
                         isSafe = false;
                         break;
+                    }
+                    else
+                    {
+                        //# Checking for monotonicity for ASC
+                        if (level > reports[i][j - 1])
+                        {
+                            if (isDesc) //# if monotonicity is broken
+                            {
+                                isSafe = false;
+                                break;
+                            }
+                            else
+                            {
+                                isAsc = true;
+                            }
+                        }
+                        //# Checking for monotonicity for DESC
+                        if (level < reports[i][j - 1])
+                        {
+                            if (isAsc) //# if monotonicity is broken
+                            {
+                                isSafe = false;
+                                break;
+                            }
+                            else
+                            {
+                                isDesc = true;
+                            }
+                        }
                     }
                 }
             }
@@ -105,9 +98,9 @@ class Program
                 isError = true;
                 break;
             }
-            if ((isAsc == true || isDesc == true) && isSafe == true)
+            if ((isAsc || isDesc) && isSafe)
             {
-                safeList.Add(new List<int>(reports[i]));
+                // safeList.Add(new List<int>(reports[i]));
                 safeCount++;
             }
         }
@@ -117,12 +110,12 @@ class Program
         }
         else
         {
-            // Вывод значений
-            for (int k = 0; k < safeList.Count; k++)
-            {
-                Console.WriteLine($"safeList[{k}]: {string.Join(", ", safeList[k])}");
-            }
-            Console.WriteLine("Safe count: " + safeCount);
+            // Output of safeList
+            // for (int k = 0; k < safeList.Count; k++)
+            // {
+            //     Console.WriteLine($"safeList[{k}]: {string.Join(", ", safeList[k])}");
+            // }
+            Console.WriteLine("Count of safe reports: " + safeCount); //516
         }
     }
 }
