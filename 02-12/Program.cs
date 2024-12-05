@@ -124,24 +124,24 @@ class Program
         //* ----------------- SOLUTION 2 (and Variant2 For Solution1) ---------------- */
         safeCount = 0;
         var rows = File.ReadLines(filePath);
-        // var rows = File.ReadLines(filePath).Take(20); //# limit 20rows
+        // var rows = File.ReadLines(filePath).Take(20); //# limit 20rows for testing
 
         //# Create list with levels from one row
-        //# в течении цикла работаем только с одной строкой из файла. Создаем лист/массив из цифр, делаем все проверки.
+        //# в течении цикла работаем только с одной строкой из файла. Создаем лист/массив из чисел(levels), делаем все проверки.
         //# обновляем safeCount при выполнении условия. При следующем цикле создается новый лист из следующей строки.
-        //# таким образом, одновременно существует только один rowOfLevels в виде [16, 19, 21, 24, 21]
+        //# таким образом, одновременно существует только один rowOfLevels(report) в виде [16, 19, 21, 24, 21]
         foreach (var row in rows)
         {
             var rowOfLevels = row.Split(' ').Select(int.Parse).ToList();
             // Console.WriteLine(string.Join(", ", rowOfLevels));
             // Console.WriteLine(rowOfLevels[0]); //# list works with index exactly as array
 
-            if (isReportSafe(rowOfLevels))
+            if (isReportSafe(rowOfLevels) || isCanBeSafe(rowOfLevels))
             {
                 safeCount++;
             }
         }
-        Console.WriteLine("Count of safe reports v2: " + safeCount); //516
+        Console.WriteLine("New count of safe reports: " + safeCount); //561
 
         bool isReportSafe(List<int> report)
         {
@@ -155,7 +155,9 @@ class Program
 
             for (int i = 1; i < report.Count; i++)
             {
+                //# Absolute distance
                 int diff = Math.Abs(report[i] - report[i - 1]);
+
                 if (diff < 1 || diff > 3 || (report[i] > report[i - 1] != isAsc))
                 {
                     return false;
@@ -163,10 +165,29 @@ class Program
 
             }
             return true;
-
         }
 
+        bool isCanBeSafe(List<int> report)
+        {
+            if (report.Count() < 2)
+            {
+                return false;
+            }
+            //# В каждом цикле создаем новый лист с числами, исключая число с текущим индексом
+            //# и проверяем стал ли новый лист(рапорт) безопасным.
+            //# если да, выходим из цикла и возвращаем true
+            for (int i = 0; i < report.Count; i++)
+            {
+                //# create a new list of levels without level with current index
+                //# and check is this new list safe or not
+                var modLevelsArr = report.Where((_, index) => index != i).ToList();
 
-
+                if (isReportSafe(modLevelsArr))
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
     }
 }
