@@ -17,7 +17,7 @@ class Program
     {
         //* ------------------------------- Preparation ------------------------------ */
         //# get data from the link and save it to new file input-day2.txt
-        //# curl -H "Cookie: session=..." https://adventofcode.com/2024/day/2/input > input-day2.txt
+        //NB curl -H "Cookie: session=..." https://adventofcode.com/2024/day/2/input > input-day2.txt
 
         //# read the file input-day2.txt
         string filePath = "input-day2.txt";
@@ -31,7 +31,7 @@ class Program
         //* ------------------------------- SOLUTION 1 ------------------------------- */
         string[]? lines = File.ReadAllLines(filePath);
         int count = lines.Length;
-        // int count = 20; //for short testing
+        // int count = 20; //for testing
 
         bool isError = false;
 
@@ -55,13 +55,13 @@ class Program
             //# Convert string "parts" to an array of numbers and add to general reports array
             for (int j = 0; j < parts.Length; j++)
             {
-                int.TryParse(parts[j], out int level);
+                _ = int.TryParse(parts[j], out int level);
                 reports[i][j] = level;
 
                 if (j > 0) //no manipulation with the first level(number) in the report
                 {
                     //# Checking the difference
-                    if ((Math.Abs(level - reports[i][j - 1]) < 1 || Math.Abs(level - reports[i][j - 1]) > 3))
+                    if (Math.Abs(level - reports[i][j - 1]) < 1 || Math.Abs(level - reports[i][j - 1]) > 3)
                     {
                         isSafe = false;
                         break;
@@ -124,17 +124,18 @@ class Program
         //* ----------------- SOLUTION 2 (and Variant2 For Solution1) ---------------- */
         safeCount = 0;
         var rows = File.ReadLines(filePath);
-        // var rows = File.ReadLines(filePath).Take(20); //# limit 20rows for testing
+        // var rows = File.ReadLines(filePath).Take(20); // limit 20rows for testing
+
+        //NB в течении цикла работаем только с одной строкой из файла. Создаем лист/массив из чисел(levels), делаем все проверки.
+        //NB обновляем safeCount при выполнении условия. При следующем цикле создается новый лист из следующей строки.
+        //NB таким образом, одновременно существует только один rowOfLevels(report) в виде [16, 19, 21, 24, 21]
 
         //# Create list with levels from one row
-        //# в течении цикла работаем только с одной строкой из файла. Создаем лист/массив из чисел(levels), делаем все проверки.
-        //# обновляем safeCount при выполнении условия. При следующем цикле создается новый лист из следующей строки.
-        //# таким образом, одновременно существует только один rowOfLevels(report) в виде [16, 19, 21, 24, 21]
         foreach (var row in rows)
         {
             var rowOfLevels = row.Split(' ').Select(int.Parse).ToList();
             // Console.WriteLine(string.Join(", ", rowOfLevels));
-            // Console.WriteLine(rowOfLevels[0]); //# list works with index exactly as array
+            // Console.WriteLine(rowOfLevels[0]); //NB list works with index exactly as array
 
             if (isReportSafe(rowOfLevels) || isCanBeSafe(rowOfLevels))
             {
@@ -169,17 +170,17 @@ class Program
 
         bool isCanBeSafe(List<int> report)
         {
-            if (report.Count() < 2)
+            if (report.Count < 2)
             {
                 return false;
             }
-            //# В каждом цикле создаем новый лист с числами, исключая число с текущим индексом
-            //# и проверяем стал ли новый лист(рапорт) безопасным.
-            //# если да, выходим из цикла и возвращаем true
+            //NB В каждом цикле создаем новый лист с числами, исключая число с текущим индексом
+            //NB и проверяем стал ли новый лист(рапорт) безопасным.
+            //Nb если да, выходим из цикла и возвращаем true
             for (int i = 0; i < report.Count; i++)
             {
                 //# create a new list of levels without level with current index
-                //# and check is this new list safe or not
+                //# and check if this new list is safe or not
                 var modLevelsArr = report.Where((_, index) => index != i).ToList();
 
                 if (isReportSafe(modLevelsArr))

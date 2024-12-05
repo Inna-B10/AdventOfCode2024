@@ -20,8 +20,8 @@ internal class Program
     public static void Main()
     {
         //* ------------------------------- Preparation ------------------------------ */
+        //NB curl -H "Cookie: session=..." https://adventofcode.com/2024/day/1/input > input-day1.txt
         //# get data from the link and save it to new file input-day1.txt
-        //# curl -H "Cookie: session=..." https://adventofcode.com/2024/day/1/input > input-day1.txt
 
         //# read the file input-day1.txt
         string filePath = "input-day1.txt";
@@ -32,7 +32,7 @@ internal class Program
         }
         string[]? lines = File.ReadAllLines(filePath);
         int count = lines.Length;
-        // int count = 10; //for short testing
+        // int count = 10; //for testing
 
         //to check if we get some data from the file
         //Console.WriteLine(lines[0]);
@@ -42,12 +42,14 @@ internal class Program
 
         for (int i = 0; i < count; i++)
         {
-            //# split line by spaces and/or tabs and remove them: Split(' ') / Split(new[] { ' ', '\t' }) if several separators
-            //# var parts = lines[i].Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            //NB Split(' ') / Split(new[] { ' ', '\t' }) if several separators
+            //NB var parts = lines[i].Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+            //# split line by spaces and/or tabs and remove them
             string[]? parts = lines[i].Split([' ', '\t'], StringSplitOptions.RemoveEmptyEntries);
 
-            //# out int num1: Declares a new variable num1 directly inside the method call.
-            //# After TryParse, the variable will either contain the converted number or returns false.
+            //NB out int num1: Declares a new variable num1 directly inside the method call.
+            //NB After TryParse, the variable will either contain the converted number or returns false.
+            //# convert to numbers and fill arrays
             if (parts.Length == 2 && int.TryParse(parts[0], out int num1) && int.TryParse(parts[1], out int num2))
             {
                 column1[i] = num1;
@@ -55,30 +57,32 @@ internal class Program
             }
         }
         //* -------------------------------- SOLUTION 1 ------------------------------- */
-        //# 1. Sorting array - Array.Sort(array); / Array.Reverse(array); // original array mutated !!!
-        //# 2. Sorting list -  list.Sort(); /  list.Sort((x, y) => y.CompareTo(x)); // original list mutated !!!
-        //# 3. Universal LINQ method for sorting:   // create new array/list with sorted result, original array/list is UNmutated!
-        //#     using System.Linq;
-        //#
-        //#     int[] array = { 5, 2, 8, 3, 1 };
-        //#     List<int> list = new List<int> { 5, 2, 8, 3, 1 };
-        //# 
-        //#     Ascending sort
-        //#     var sortedArray = array.OrderBy(x => x).ToArray();
-        //#     var sortedList = list.OrderBy(x => x).ToList();
-        //# 
-        //#     Descending sort
-        //#     var descArray = array.OrderByDescending(x => x).ToArray();
-        //#     var descList = list.OrderByDescending(x => x).ToList();
+        //NB 1. Sorting array: Array.Sort(array); / Array.Reverse(array); // original array mutated !!!
+        //NB 2. Sorting list:  list.Sort(); /  list.Sort((x, y) => y.CompareTo(x)); // original list mutated !!!
+        //NB 3. Universal LINQ method for sorting:   // create new array/list with sorted result, original array/list is UNmutated!
+        //NB     using System.Linq;
+        //NB
+        //NB     int[] array = { 5, 2, 8, 3, 1 };
+        //NB     List<int> list = new List<int> { 5, 2, 8, 3, 1 };
+        //NB 
+        //NB     Ascending sort
+        //NB     var sortedArray = array.OrderBy(x => x).ToArray();
+        //NB     var sortedList = list.OrderBy(x => x).ToList();
+        //NB 
+        //NB     Descending sort
+        //NB     var descArray = array.OrderByDescending(x => x).ToArray();
+        //NB     var descList = list.OrderByDescending(x => x).ToList();
 
         Array.Sort(column1);
         Array.Sort(column2);
 
-        //# Zip method processes two arrays/lists in parallel at once.
-        //# If the arrays/lists are of different lengths, Zip takes elements only up to the end of the shortest array/list.
-        //# In this case, it takes the elements from column1 and column2 IN PAIRS!
+        //NB Zip method processes two arrays/lists in parallel at once.
+        //NB If the arrays/lists are of different lengths, Zip takes elements only up to the end of the shortest array/list.
+        //NB In this case, it takes the elements from column1 and column2 IN PAIRS!
 
+        //# check absolute difference between numbers in column1 and column2, and put result in new array
         var differencesArr = column1.Zip(column2, (a, b) => Math.Abs(a - b)).ToArray();
+
 
         int result = differencesArr.Sum();
         Console.WriteLine("Total distance: " + result); //2285373
@@ -92,8 +96,7 @@ internal class Program
         var rightCount = column2.GroupBy(x => x).ToDictionary(g => g.Key, g => g.Count());
         // foreach (var item in rightCount)
         // {
-        //     Console.WriteLine(item); 
-        //     [33335, 1] num as key, count as value
+        //     Console.WriteLine(item);     // [33335, 1] num as key, count as value
         // }
 
         // Console.WriteLine(string.Join(", ", rightCount)); //short version of code above
@@ -103,9 +106,9 @@ internal class Program
         int totalSimilarity = 0;
         foreach (var num in column1)
         {
-            if (rightCount.ContainsKey(num))
+            if (rightCount.TryGetValue(num, out int value))
             {
-                totalSimilarity += num * rightCount[num];
+                totalSimilarity += num * value;
             }
         }
         Console.WriteLine("Total similarity: " + totalSimilarity); //21142653
