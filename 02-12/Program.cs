@@ -16,7 +16,7 @@ class Program
     static void Main()
     {
         //* ------------------------------- Preparation ------------------------------ */
-        //# get data from the link and save it to new file input-day1.txt
+        //# get data from the link and save it to new file input-day2.txt
         //# curl -H "Cookie: session=..." https://adventofcode.com/2024/day/2/input > input-day2.txt
 
         //# read the file input-day2.txt
@@ -146,7 +146,7 @@ class Program
         bool isReportSafe(List<int> report)
         {
             //# if only one or none number in the row
-            if (report.Count() < 2)
+            if (report.Count < 2)
             {
                 return false;
             }

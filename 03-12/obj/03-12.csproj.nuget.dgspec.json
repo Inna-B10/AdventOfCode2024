@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\01-12\\01-12.csproj": {}
+    "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\03-12\\03-12.csproj": {}
   },
   "projects": {
-    "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\01-12\\01-12.csproj": {
+    "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\03-12\\03-12.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\01-12\\01-12.csproj",
-        "projectName": "01-12",
-        "projectPath": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\01-12\\01-12.csproj",
+        "projectUniqueName": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\03-12\\03-12.csproj",
+        "projectName": "03-12",
+        "projectPath": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\03-12\\03-12.csproj",
         "packagesPath": "C:\\Users\\ZayaZ\\.nuget\\packages\\",
-        "outputPath": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\01-12\\obj\\",
+        "outputPath": "E:\\DEVELOP\\C#\\11-2024\\AdventOfCode2024\\03-12\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

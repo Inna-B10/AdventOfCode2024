@@ -1,0 +1,15 @@
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\bin\Debug\net9.0\03-12.exe
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\bin\Debug\net9.0\03-12.deps.json
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\bin\Debug\net9.0\03-12.runtimeconfig.json
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\bin\Debug\net9.0\03-12.dll
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\bin\Debug\net9.0\03-12.pdb
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.GeneratedMSBuildEditorConfig.editorconfig
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.AssemblyInfoInputs.cache
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.AssemblyInfo.cs
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.csproj.CoreCompileInputs.cache
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.sourcelink.json
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.dll
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\refint\03-12.dll
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.pdb
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\03-12.genruntimeconfig.cache
+E:\DEVELOP\C#\11-2024\AdventOfCode2024\03-12\obj\Debug\net9.0\ref\03-12.dll
